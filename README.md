@@ -32,9 +32,22 @@ go build -o safadel.exe
 
 ## 使用方法
 
+### 命令行使用
 ```bash
 safadel <文件或目录路径>
 ```
+
+### 注册到右键菜单
+```bash
+safadel register
+```
+注册后，您可以在 Windows 资源管理器中右键点击文件或文件夹，选择"安全擦除"来删除文件。
+
+### 取消右键菜单注册
+```bash
+safadel unregister
+```
+执行此命令可以移除 Windows 资源管理器中的"安全擦除"右键菜单项。
 
 ### 示例：
 

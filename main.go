@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"sync"
 	"sync/atomic"
+	"golang.org/x/sys/windows/registry"
 )
 
 const (
@@ -416,7 +417,116 @@ func secureDeleteDir(path string) error {
 	return nil
 }
 
+func registerContextMenu() error {
+	// 获取当前可执行文件的完整路径
+	exePath, err := os.Executable()
+	if err != nil {
+		return fmt.Errorf("获取程序路径失败: %v", err)
+	}
+	exePath = `"` + exePath + `" "%1"`
+
+	// 创建 *\shell\SafaDel 键
+	k, _, err := registry.CreateKey(registry.CLASSES_ROOT, `*\shell\SafaDel`, registry.ALL_ACCESS)
+	if err != nil {
+		return fmt.Errorf("创建菜单键失败: %v", err)
+	}
+	defer k.Close()
+
+	// 设置显示名称
+	if err := k.SetStringValue("", "安全擦除"); err != nil {
+		return fmt.Errorf("设置菜单名称失败: %v", err)
+	}
+
+	// 设置图标（使用程序自身作为图标）
+	if err := k.SetStringValue("Icon", filepath.Clean(exePath)); err != nil {
+		return fmt.Errorf("设置图标失败: %v", err)
+	}
+
+	// 创建命令键
+	cmd, _, err := registry.CreateKey(registry.CLASSES_ROOT, `*\shell\SafaDel\command`, registry.ALL_ACCESS)
+	if err != nil {
+		return fmt.Errorf("创建命令键失败: %v", err)
+	}
+	defer cmd.Close()
+
+	// 设置命令
+	if err := cmd.SetStringValue("", exePath); err != nil {
+		return fmt.Errorf("设置命令失败: %v", err)
+	}
+
+	// 为目录也添加右键菜单
+	dirKey, _, err := registry.CreateKey(registry.CLASSES_ROOT, `Directory\shell\SafaDel`, registry.ALL_ACCESS)
+	if err != nil {
+		return fmt.Errorf("创建目录菜单键失败: %v", err)
+	}
+	defer dirKey.Close()
+
+	if err := dirKey.SetStringValue("", "安全擦除"); err != nil {
+		return fmt.Errorf("设置目录菜单名称失败: %v", err)
+	}
+
+	if err := dirKey.SetStringValue("Icon", filepath.Clean(exePath)); err != nil {
+		return fmt.Errorf("设置目录图标失败: %v", err)
+	}
+
+	dirCmd, _, err := registry.CreateKey(registry.CLASSES_ROOT, `Directory\shell\SafaDel\command`, registry.ALL_ACCESS)
+	if err != nil {
+		return fmt.Errorf("创建目录命令键失败: %v", err)
+	}
+	defer dirCmd.Close()
+
+	if err := dirCmd.SetStringValue("", exePath); err != nil {
+		return fmt.Errorf("设置目录命令失败: %v", err)
+	}
+
+	return nil
+}
+
+func unregisterContextMenu() error {
+	// 删除文件的右键菜单
+	err := registry.DeleteKey(registry.CLASSES_ROOT, `*\shell\SafaDel\command`)
+	if err != nil && err != registry.ErrNotExist {
+		return fmt.Errorf("删除文件命令键失败: %v", err)
+	}
+	err = registry.DeleteKey(registry.CLASSES_ROOT, `*\shell\SafaDel`)
+	if err != nil && err != registry.ErrNotExist {
+		return fmt.Errorf("删除文件菜单键失败: %v", err)
+	}
+
+	// 删除目录的右键菜单
+	err = registry.DeleteKey(registry.CLASSES_ROOT, `Directory\shell\SafaDel\command`)
+	if err != nil && err != registry.ErrNotExist {
+		return fmt.Errorf("删除目录命令键失败: %v", err)
+	}
+	err = registry.DeleteKey(registry.CLASSES_ROOT, `Directory\shell\SafaDel`)
+	if err != nil && err != registry.ErrNotExist {
+		return fmt.Errorf("删除目录菜单键失败: %v", err)
+	}
+
+	return nil
+}
+
 func main() {
+	// 检查是否为注册命令
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "register":
+			if err := registerContextMenu(); err != nil {
+				fmt.Printf("注册右键菜单失败: %v\n", err)
+				os.Exit(1)
+			}
+			fmt.Println("成功注册到右键菜单！")
+			os.Exit(0)
+		case "unregister":
+			if err := unregisterContextMenu(); err != nil {
+				fmt.Printf("取消注册右键菜单失败: %v\n", err)
+				os.Exit(1)
+			}
+			fmt.Println("成功取消注册右键菜单！")
+			os.Exit(0)
+		}
+	}
+
 	flag.Parse()
 	args := flag.Args()
 
