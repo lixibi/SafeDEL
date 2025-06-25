@@ -8,7 +8,7 @@
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
     <description>A secure file deletion library that uses multiple overwrite patterns to ensure data cannot be recovered. Supports both single file and directory deletion with concurrent processing.</description>
     <tags>secure-delete file-shredding data-destruction privacy security</tags>
-    <repository type="git" url="https://github.com/your-repo/safedelete-library" commit="c13eef96254af26a5078a70a4ca7c3c792032e11" />
+    <repository type="git" url="https://github.com/your-repo/safedelete-library" commit="e48e30e6645f9194e92fec4bde7cf69eee0b1c12" />
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
