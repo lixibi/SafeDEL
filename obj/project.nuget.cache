@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "/yA5mZwDqA+0f64n2HztnXFAgE0PD3AGt/h3uGnXNtFmwBGXqiCRGYnf/T7krpclRwU9NPmOcpNhDb9SkE6Izw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lee\\Documents\\code\\safedel\\SafeDeleteLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lee\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\lee\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

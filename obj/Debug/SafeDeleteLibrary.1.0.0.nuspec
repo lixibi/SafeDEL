@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SafeDeleteLibrary</id>
+    <version>1.0.0</version>
+    <authors>SafeDel Team</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <description>A secure file deletion library that uses multiple overwrite patterns to ensure data cannot be recovered. Supports both single file and directory deletion with concurrent processing.</description>
+    <tags>secure-delete file-shredding data-destruction privacy security</tags>
+    <repository type="git" url="https://github.com/your-repo/safedelete-library" commit="c13eef96254af26a5078a70a4ca7c3c792032e11" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\lee\Documents\code\safedel\bin\Debug\netstandard2.0\SafeDeleteLibrary.dll" target="lib\netstandard2.0\SafeDeleteLibrary.dll" />
+  </files>
+</package>

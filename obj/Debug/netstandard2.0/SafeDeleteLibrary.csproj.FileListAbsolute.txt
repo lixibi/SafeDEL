@@ -1,0 +1,10 @@
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.csproj.AssemblyReference.cache
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.AssemblyInfoInputs.cache
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.AssemblyInfo.cs
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.csproj.CoreCompileInputs.cache
+C:\Users\lee\Documents\code\safedel\bin\Debug\netstandard2.0\SafeDeleteLibrary.deps.json
+C:\Users\lee\Documents\code\safedel\bin\Debug\netstandard2.0\SafeDeleteLibrary.dll
+C:\Users\lee\Documents\code\safedel\bin\Debug\netstandard2.0\SafeDeleteLibrary.pdb
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.dll
+C:\Users\lee\Documents\code\safedel\obj\Debug\netstandard2.0\SafeDeleteLibrary.pdb

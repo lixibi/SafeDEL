@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SafeDeleteLibrary</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>SafeDel Team</Authors>
+    <Description>A secure file deletion library that uses multiple overwrite patterns to ensure data cannot be recovered. Supports both single file and directory deletion with concurrent processing.</Description>
+    <PackageTags>secure-delete;file-shredding;data-destruction;privacy;security</PackageTags>
+    <RepositoryUrl>https://github.com/your-repo/safedelete-library</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>SafeDeleteLibrary.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
